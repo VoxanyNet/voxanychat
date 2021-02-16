@@ -13,14 +13,28 @@ root = Tk()
 my_username = input("//VXNY.NET USERNAME// >>")
 root.geometry("600x600")
 root.title("Voxany Chat")
-voxico = PhotoImage(file="assets/images/cornerlogo.gif")
+#voxico = PhotoImage(file="assets/images/cornerlogo.gif", format="gif -index 2")
 errorphoto = PhotoImage(file="assets/images/redattempting.png")
-Label(root, image=voxico, bg = "black").grid(row=0, column=0)
+#Label(root, image=voxico, bg = "black").grid(row=0, column=0)
 prompt = Entry(root, fg="Purple", bg="Black", bd=5, width = 50)
 root.configure(background="black")
 message = ""
 messageid = 0
 
+logoframeCnt = 72
+voxico = [PhotoImage(file="assets/images/cornerlogo.gif",format = 'gif -index %i' %(i)) for i in range(logoframeCnt)]
+
+def updatelogo(ind):
+
+    frame = voxico[ind]
+    ind += 1
+    if ind == logoframeCnt:
+        ind = 0
+    logo.configure(image=frame)
+    root.after(100, updatelogo, ind)
+logo = Label(root)
+logo.pack()
+root.after(0, updatelogo, 0)
 
 
 iconicon = PhotoImage(file =  "assets/images/ico.png")
