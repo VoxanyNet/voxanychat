@@ -13,28 +13,30 @@ root = Tk()
 my_username = input("//VXNY.NET USERNAME// >>")
 root.geometry("600x600")
 root.title("Voxany Chat")
-#voxico = PhotoImage(file="assets/images/cornerlogo.gif", format="gif -index 2")
+logoindex = 0
+updatestep = 0
+voxico = PhotoImage(file="assets/images/cornerlogo.gif", format="gif -index " + str(logoindex))
 errorphoto = PhotoImage(file="assets/images/redattempting.png")
-#Label(root, image=voxico, bg = "black").grid(row=0, column=0)
+logo = Label(root, image=voxico, bg = "black").grid(row=0, column=0)
 prompt = Entry(root, fg="Purple", bg="Black", bd=5, width = 50)
 root.configure(background="black")
 message = ""
 messageid = 0
 
 logoframeCnt = 72
-voxico = [PhotoImage(file="assets/images/cornerlogo.gif",format = 'gif -index %i' %(i)) for i in range(logoframeCnt)]
 
-def updatelogo(ind):
-
-    frame = voxico[ind]
-    ind += 1
-    if ind == logoframeCnt:
-        ind = 0
-    logo.configure(image=frame)
-    root.after(100, updatelogo, ind)
-logo = Label(root)
-logo.pack()
-root.after(0, updatelogo, 0)
+def updatelogo():
+    global updatestep
+    global logoindex
+    if updatestep < 500:
+        updatestep += 1
+    if updatestep == 500:
+        updatestep = 0
+        if logoindex < 71:
+            logoindex += 1
+        else:
+            logoindex = 0
+        voxico.configure(format="gif -index " + str(logoindex))
 
 
 iconicon = PhotoImage(file =  "assets/images/ico.png")
@@ -70,6 +72,7 @@ client_socket.send(username_header + username)
 usernamelabel = Label(root, text="You are signed in as: " + str(my_username), fg = "Purple", bg="Black").place(x=32, y=128)
 while True:
     root.update()
+    updatelogo()
     if keyboard.is_pressed("enter") and len(prompt.get()) > 0:
         print(my_username +" > " +str(prompt.get()))
         message = prompt.get()
