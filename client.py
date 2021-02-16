@@ -6,6 +6,10 @@ from tkinter import *
 import keyboard
 from playsound import playsound
 
+# Specifies the directory where notification sounds can be sent.
+# This can allow directories to be changed for custom notification sounds
+innotifdir = "assets/audio/innoti.wav"
+outnotifdir = "assets/audio/outnoti.mp3"
 
 chathistory = "This is the beginning of the chat.\n"
 #Initialize GUI------------
@@ -59,10 +63,13 @@ while True:
     if keyboard.is_pressed("enter") and len(prompt.get()) > 0:
         print(my_username +" > " +str(prompt.get()))
         message = prompt.get()
+        if message == "ilovekruz":
+            innotifdir = "assets/audio/kruzinnoti.wav"
+            outnotifdir = "assets/audio/kruzoutnoti.wav"
         chatBox.insert(INSERT, "You >  " + str(message) + "\n")
         chatBox.see("end")
         prompt.delete(0, 1000)
-        playsound('assets/audio/outnoti.mp3')
+        playsound(outnotifdir)
 
 
     if isinstance(message, str):
@@ -87,10 +94,10 @@ while True:
         message = client_socket.recv(message_length).decode('utf-8')
 
         print(f"{username} > {message}")
-        playsound('assets/audio/innoti.wav')
         chatBox.insert(INSERT,f"{username} > {message}\n" )
         chatBox.see("end")
         message = ""
+        playsound(innotifdir)
 
 
     except IOError as e:
