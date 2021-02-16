@@ -96,11 +96,8 @@ while True:
         message = client_socket.recv(message_length).decode('utf-8')
 
         print(f"{username} > {message}")
-<<<<<<< Updated upstream
-=======
         if muted.get() == 0:
             playsound('assets/audio/innoti.wav')
->>>>>>> Stashed changes
         chatBox.insert(INSERT,f"{username} > {message}\n" )
         chatBox.see("end")
         message = ""
