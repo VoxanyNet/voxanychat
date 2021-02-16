@@ -37,7 +37,7 @@ PORT = 5555
 
 
 prompt.place(x=20, y=400)
-chatBox = Text(root, height=10, width =60, bg = "#101010", fg = "Purple")
+chatBox = Text(root, height=10, width =60, bg = "#101010", fg = "Purple", wrap=WORD)
 chatBox.place(x = 32, y = 164)
 client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 while True:
