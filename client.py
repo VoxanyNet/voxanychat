@@ -24,12 +24,9 @@ prompt = Entry(root, fg="Purple", bg="Black", bd=5, width = 50)
 root.configure(background="black")
 message = ""
 messageid = 0
-<<<<<<< Updated upstream
 
-=======
 muted = IntVar()
 mutebutton = Checkbutton(root, text='Do not Disturb',variable=muted, onvalue=1, offvalue=0, bg = "Black", fg="Purple", activebackground="Black",activeforeground="Purple").place(x=32, y=450)
->>>>>>> Stashed changes
 
 
 iconicon = PhotoImage(file =  "assets/images/ico.png")
