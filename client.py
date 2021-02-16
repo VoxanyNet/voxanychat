@@ -4,29 +4,26 @@ import errno
 import sys
 from tkinter import *
 import keyboard
-global clients
+from playsound import playsound
+
+
 chathistory = "This is the beginning of the chat.\n"
 #Initialize GUI------------
 root = Tk()
-serverselection = input("Select a server: \n (1)'Derson's Server \n (2) Voxany's Server \n")
-servers = {
-    1: "47.40.132.255",
-    2: "voxany.net"
-}
-IP = servers[int(serverselection)]
-print(IP + " has been selected")
 my_username = input("//VXNY.NET USERNAME// >>")
 root.geometry("600x600")
 root.title("Voxany Chat")
-voxico = PhotoImage(file="cornerlogo.gif")
-errorphoto = PhotoImage(file="redattempting.png")
+voxico = PhotoImage(file="assets/images/cornerlogo.gif")
+errorphoto = PhotoImage(file="assets/images/redattempting.png")
 Label(root, image=voxico, bg = "black").grid(row=0, column=0)
 prompt = Entry(root, fg="Purple", bg="Black", bd=5, width = 50)
 root.configure(background="black")
 message = ""
 messageid = 0
 
-iconicon = PhotoImage(file =  "ico.png")
+
+
+iconicon = PhotoImage(file =  "assets/images/ico.png")
 
 
 root.iconphoto(False, iconicon)
@@ -34,6 +31,7 @@ root.iconphoto(False, iconicon)
 
 HEADER_LENGTH = 10
 
+IP = "47.40.132.255"
 PORT = 5555
 
 
@@ -88,6 +86,7 @@ while True:
         message = client_socket.recv(message_length).decode('utf-8')
 
         print(f"{username} > {message}")
+        playsound('assets/audio/innoti.wav')
         chatBox.insert(INSERT,f"{username} > {message}\n" )
         chatBox.see("end")
         message = ""
