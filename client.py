@@ -62,6 +62,7 @@ while True:
         chatBox.insert(INSERT, "You >  " + str(message) + "\n")
         chatBox.see("end")
         prompt.delete(0, 1000)
+        playsound('assets/audio/outnoti.mp3')
 
 
     if isinstance(message, str):
