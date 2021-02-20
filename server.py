@@ -2,7 +2,11 @@ import socket
 import select
 
 HEADER_LENGTH = 10
-IP = "192.168.1.4"
+
+# This is the default "loopback" address in networking. It just means that it will
+# set the server address to the computer's own IP. This means we don't need
+# to specify the server's particular local IP
+IP = "127.0. 0.1"
 PORT = 5555
 
 server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
