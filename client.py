@@ -12,9 +12,28 @@ innotifdir = "assets/audio/innoti.wav"
 outnotifdir = "assets/audio/outnoti.mp3"
 
 chathistory = "This is the beginning of the chat.\n"
-#Initialize GUI------------
+
+# Asks user for desired username
+my_username = input("//Voxany Chat Username// >> ")
+
+# Asks the user what the IP of the server they want to connect to is
+IPask = input("//Enter IP of the server, or press enter to use default server. (voxany.net)// >> ")
+
+# If user inputs nothing it will set IP equal to voxany.net
+if IPask == "":
+    IP = "voxany.net"
+    
+# If user inputs a response, IP will be set equal to input
+else:
+    IP = IPask
+PORT = 5555
+
+# Confirms IP to user
+print("Server IP set to " + IP)
+
+#Initialize GUI
 root = Tk()
-my_username = input("//VXNY.NET USERNAME// >> ")
+
 root.geometry("600x600")
 root.title("Voxany Chat")
 voxico = PhotoImage(file="assets/images/cornerlogo.gif")
@@ -37,20 +56,6 @@ root.iconphoto(False, iconicon)
 
 HEADER_LENGTH = 10
 
-# Asks the user what the IP of the server they want to connect to is
-IPask = input("Enter IP of the server, or press enter to use default server. (voxany.net) >> ")
-
-# If user inputs nothing it will set IP equal to voxany.net
-if IPask == "":
-    IP = "voxany.net"
-    
-# If user inputs a response, IP will be set equal to input
-else:
-    IP = IPask
-PORT = 5555
-
-# Confirms IP to user
-print("Server IP set to " + IP)
 
 prompt.place(x=20, y=400)
 chatBox = Text(root, height=10, width =60, bg = "#101010", fg = "Purple", wrap=WORD)
