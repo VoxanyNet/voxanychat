@@ -29,7 +29,7 @@ else:
 PORT = 5555
 
 # Confirms IP to user
-print("Server IP set to " + IP)
+print("//Server IP set to " + IP + "//")
 
 #Initialize GUI
 root = Tk()
