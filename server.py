@@ -6,8 +6,20 @@ HEADER_LENGTH = 10
 # This is the default "loopback" address in networking. It just means that it will
 # set the server address to the computer's own IP. This means we don't need
 # to specify the server's particular local IP
-IP = socket.gethostname()
-PORT = 5555
+
+IP = input("//Enter server IP to run on, or press enter to fetch IP automatically.// >> ") 
+
+# Checks if IP is empty.
+if IP == "":
+    IP = socket.gethostname()
+    
+print("IP set to " + IP)
+
+PORT = input("//Enter server port to run on, or press enter to set default. (5555)// >> ") 
+
+# Checks if port is empty.
+if PORT == "":
+    PORT = 5555
 
 server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 server_socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
