@@ -11,7 +11,8 @@ IP = input("//Enter server IP to run on, or press enter to fetch IP automaticall
 
 # Checks if IP is empty.
 if IP == "":
-    IP = socket.gethostname()
+    hostname = socket.gethostname()
+    IP = socket.gethostbyname(hostname)
     
 print("IP set to " + IP)
 
