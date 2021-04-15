@@ -115,7 +115,7 @@ while True:
         message_length = int(message_header.decode('utf-8').strip())
         message = client_socket.recv(message_length).decode('utf-8')
         
-        if my_username in message:
+        if my_username in message and muted == 0:
             notification.show_toast("Voxany Chat",message,duration=5,icon_path="assets/images/voxany.ico",threaded = True)
             
         print(f"{username} > {message}")
