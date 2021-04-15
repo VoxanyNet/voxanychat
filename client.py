@@ -5,6 +5,10 @@ import sys
 from tkinter import *
 import keyboard
 from playsound import playsound
+from win10toast import ToastNotifier
+
+# Creates notification object
+notification = ToastNotifier()
 
 # Specifies the directory where notification sounds can be sent.
 # This can allow directories to be changed for custom notification sounds
@@ -83,6 +87,7 @@ while True:
         if message == "ilovekruz":
             innotifdir = "assets/audio/kruzinnoti.wav"
             outnotifdir = "assets/audio/kruzoutnoti.wav"
+         
         chatBox.insert(INSERT, "You >  " + str(message) + "\n")
         chatBox.see("end")
         prompt.delete(0, 1000)
@@ -109,7 +114,10 @@ while True:
         message_header = client_socket.recv(HEADER_LENGTH)
         message_length = int(message_header.decode('utf-8').strip())
         message = client_socket.recv(message_length).decode('utf-8')
-
+        
+        if my_username in message:
+            notification.show_toast("Voxany Chat",message,duration=5,icon_path="assets/images/voxany.ico",threaded = True)
+            
         print(f"{username} > {message}")
         if muted.get() == 0:
             playsound('assets/audio/innoti.wav')
